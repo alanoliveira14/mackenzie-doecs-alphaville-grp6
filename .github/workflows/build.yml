@@ -21,4 +21,6 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           architecture: x64
-      - run: pip install -r requirements.txt && pytest src/test
+      - run: pip install --upgrade pip
+      - run: pip install -r requirements.txt 
+      - run: pytest
