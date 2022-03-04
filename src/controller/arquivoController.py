@@ -3,14 +3,19 @@ import uuid
 import json
 from builtins import print
 
+DEFAULT_EXTENSION = '.csv'
 
 def receiveFile(arquivo):
 
     print('iniciando salvamento do arquivo')
 
+    # split por . + pegando extensao na posicao 1 do array e validando se é csv
+    if arquivo.filename.rsplit('.', 1)[1].lower() != 'csv':
+        raise Exception("Extensao nao permitida!")
+
     nomeUnicoArquivo = str(uuid.uuid1())
 
-    arquivo.save(os.path.join("uploadedFiles/", nomeUnicoArquivo))
+    arquivo.save(os.path.join("uploadedFiles/", nomeUnicoArquivo  + '.csv'))
 
     response = {
         "idArquivo": nomeUnicoArquivo,
