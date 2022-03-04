@@ -41,6 +41,15 @@ def receiveFile(arquivo):
 
     return response
 
+def listaTodosArquivos():
+    if os.path.isfile('auxiliar/arquivosEnviados.json'):
+        with open('auxiliar/arquivosEnviados.json') as json_file:
+            return json.load(json_file)
+    else:
+        return {"message":"não existem arquivos processados."}
+
+
+
 def gravaArquivo(data):
     with open('auxiliar/arquivosEnviados.json', 'w') as outfile:
         json.dump(data, outfile, indent=2)
