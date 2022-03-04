@@ -1,0 +1,27 @@
+name: Build
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+      - feature
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ 'pypy-3.8' ]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+      - run: pip install --upgrade pip
+      - run: pip install -r requirements.txt 
+      - run: pytest
