@@ -14,12 +14,12 @@ def avg_single_car_make(id_file,car_make):
 
         groupby_avg = df.groupby(['car_make']).median()
 
-        avg_value_car_make = groupby_avg['car_value']
+        avg_value_single_car_make = groupby_avg['car_value']
 
-        print(avg_value_car_make)
-        print(avg_value_car_make[param])
+        print(avg_value_single_car_make)
+        print(avg_value_single_car_make[param])
 
-        result = 'The Avarage of car_make: ' + str(param) + ', is: ' + str(avg_value_car_make[param])
+        result = 'The Avarage of car_make: ' + str(param) + ', is: ' + str(avg_value_single_car_make[param])
     else:
         result = 'Arquivo não existe'
 
