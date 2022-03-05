@@ -19,10 +19,12 @@ def avg_single_car_make(id_file,car_make):
         print(avg_value_single_car_make)
         print(avg_value_single_car_make[param])
 
-        result = 'The Avarage of car_make: ' + str(param) + ', is: ' + str(avg_value_single_car_make[param])
-    else:
-        result = 'Arquivo não existe'
+        transform_json = avg_value_single_car_make.to_json(orient="table")
+        parsed = json.loads(transform_json)
+        transform_json = json.dumps(parsed, indent=4)
 
-    response = result
+        response = transform_json
+    else:
+        response = 'Arquivo não existe'
 
     return response
