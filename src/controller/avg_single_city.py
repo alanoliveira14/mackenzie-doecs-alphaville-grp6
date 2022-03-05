@@ -16,13 +16,12 @@ def avg_single_city(id_file,city):
 
         avg_value_city = groupby_avg['car_value']
 
-        print(avg_value_city)
-        print(avg_value_city[param])
+        transform_json = avg_value_city.to_json(orient="table")
+        parsed = json.loads(transform_json)
+        transform_json = json.dumps(parsed, indent=4)
 
-        result = 'The Avarage of city: ' + str(param) + ', is: ' + str(avg_value_city[param])
+        response = transform_json
     else:
-        result = 'Arquivo não existe'
-
-    response = result
+        response = 'Arquivo não existe'
 
     return response
