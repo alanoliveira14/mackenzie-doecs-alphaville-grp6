@@ -4,6 +4,7 @@ import src.infra.http.auth as auth
 import src.controller.arquivoController as arquivoController
 import src.controller.avg_car_make as avg_car_make
 import src.controller.avg_single_car_make as avg_single_car_make
+import src.controller.avg_city as avg_city
 import flask
 
 
@@ -55,6 +56,18 @@ def route(app: flask.app.Flask):
     def request_get_avg_single_car_make(id_file,car_make):
         try:
             response = avg_single_car_make.avg_single_car_make(id_file,car_make)
+
+            return response, 200
+        except Exception as err:
+            response = Http.handle_generic_http_error(err)
+
+            return jsonify(response), 500
+
+    @app.route('/avgcity/<id_file>', methods=['GET'])
+    @auth.requires_auth
+    def request_get_avg_city(id_file):
+        try:
+            response = avg_city.avg_city(id_file)
 
             return response, 200
         except Exception as err:
